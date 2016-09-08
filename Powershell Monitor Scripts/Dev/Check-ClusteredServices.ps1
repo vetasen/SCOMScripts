@@ -29,7 +29,7 @@ $ServiceStatus = get-service -cn $clusternodes -name $Servicename
 if ($ServiceStatus.status -notcontains "Stopped"){
     $ServiceError=$null
         foreach ($service in $ServiceStatus){
-            $ServiceError = "Tjenesten $servicename kjører på begge clusternodene: $($clusternodes[0]) og $($clusternodes[1])"
+            $ServiceError = "Error: Tjenesten $servicename kjører på begge clusternodene: $($clusternodes[0]) og $($clusternodes[1])"
         }
         $bag.Addvalue("ServiceError","$ServiceError")
         $bag.addvalue("State","AllRunning")
@@ -39,7 +39,7 @@ if ($ServiceStatus.status -notcontains "Stopped"){
 elseif ($ServiceStatus.status -notcontains "Running"){
     $ServiceError=$null
         foreach ($service in $ServiceStatus){
-            $ServiceError = "Tjenesten $ServiceName er stoppet på begge clusternodene: $($clusternodes[0]) og $($clusternodes[1])"
+            $ServiceError = "Error: Tjenesten $ServiceName er stoppet på begge clusternodene: $($clusternodes[0]) og $($clusternodes[1])"
         }
         $bag.Addvalue("ServiceError","$ServiceError")
         $bag.addvalue("State","AllStopped")
